@@ -19,8 +19,19 @@ public class ErrorHandlerController {
         model.addAttribute("message",ex.getMessage());
         model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
         model.addAttribute("timestamp",new Date());
-        return "error/aritmetica";
+        return "error/generica";
     }
 
+    @ExceptionHandler(NumberFormatException.class)
+    //Se podria poner solo exception
+    public String numeroFormatoError (NumberFormatException ex , Model model){
+
+        model.addAttribute("error","Formato número inválido!!");
+        model.addAttribute("message",ex.getMessage());
+        model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        model.addAttribute("timestamp",new Date());
+
+        return "error/numero-formato";
+    }
 
 }
